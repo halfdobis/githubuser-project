@@ -5,9 +5,60 @@ import { GoRepo, GoGist } from "react-icons/go";
 import { FiUsers, FiUserPlus } from "react-icons/fi";
 
 const UserInfo = () => {
-  const data = React.useContext(GithubContext);
-  console.log(data);
-  return <h2>user info component</h2>;
+  const { githubUser } = React.useContext(GithubContext);
+  const { public_repos, followers, following, public_gists } = githubUser;
+
+  const items = [
+    {
+      id: 1,
+      icon: <GoRepo className="icon" />,
+      label: "repos",
+      value: public_repos,
+      color: "grey",
+    },
+    {
+      id: 2,
+      icon: <FiUsers className="icon" />,
+      label: "followers",
+      value: followers,
+      color: "green",
+    },
+    {
+      id: 3,
+      icon: <FiUserPlus className="icon" />,
+      label: "following",
+      value: following,
+      color: "purple",
+    },
+    {
+      id: 4,
+      icon: <GoGist className="icon" />,
+      label: "gists",
+      value: public_gists,
+      color: "blue",
+    },
+  ];
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        {items.map((item) => {
+          return <Item key={item.id} {...item}></Item>;
+        })}
+      </Wrapper>
+    </section>
+  );
+};
+
+const Item = ({ icon, label, value, color }) => {
+  return (
+    <article className="item">
+      <span className={color}>{icon}</span>
+      <div>
+        <h3>{value}</h3>
+        <p>{label}</p>
+      </div>
+    </article>
+  );
 };
 
 const Wrapper = styled.section`
@@ -43,9 +94,9 @@ const Wrapper = styled.section`
       margin-bottom: 0;
       text-transform: capitalize;
     }
-    .pink {
-      background: #ffe0f0;
-      color: #da4a91;
+    .grey {
+      background: #bababa;
+      color: #313131;
     }
     .green {
       background: var(--clr-primary-10);
@@ -55,9 +106,9 @@ const Wrapper = styled.section`
       background: #e6e6ff;
       color: #5d55fa;
     }
-    .yellow {
-      background: #fffbea;
-      color: #f0b429;
+    .blue {
+      background: #ace0f4;
+      color: #3f83b1;
     }
   }
 `;
