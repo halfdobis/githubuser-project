@@ -28,7 +28,7 @@ export default {
   twitter_username: "missdobis",
   public_repos: 17,
   public_gists: 10,
-  followers: 2,
+  followers: 32,
   following: 2,
   created_at: "2020-01-22T13:27:04Z",
   updated_at: "2020-10-28T18:19:53Z",
